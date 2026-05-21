@@ -1,0 +1,29 @@
+{
+  "specialties": [
+    { "id": 1, "name": "Développement Web" },
+    { "id": 2, "name": "Plomberie" },
+    { "id": 3, "name": "Électricité Auto" },
+    { "id": 4, "name": "Horticulture" },
+    { "id": 5, "name": "Menuiserie" }
+  ],
+  "employers": [
+    { "id": 1, "name": "TechSolutions DZ", "sector": "Informatique", "responsible": "M. Ahmed", "phone": "0550 11 22 33" },
+    { "id": 2, "name": "BatiPro", "sector": "Construction", "responsible": "M. Karim", "phone": "0550 44 55 66" },
+    { "id": 3, "name": "AutoDiag", "sector": "Automobile", "responsible": "M. Lyes", "phone": "0550 77 88 99" },
+    { "id": 4, "name": "Pépinière Verte", "sector": "Agriculture", "responsible": "Mme. Sarah", "phone": "0550 22 33 44" },
+    { "id": 5, "name": "Bois d'Or", "sector": "Menuiserie", "responsible": "M. Yacine", "phone": "0550 55 66 77" }
+  ],
+  "apprentices": [
+    { "id": 1, "name": "Amina Benali", "specialty_id": 1, "employer_id": 1, "progress": 75, "current_semester": "semester_2" },
+    { "id": 2, "name": "Karim Zidane", "specialty_id": 2, "employer_id": 2, "progress": 40, "current_semester": "semester_1" },
+    { "id": 3, "name": "Sarah Mansouri", "specialty_id": 3, "employer_id": 3, "progress": 20, "current_semester": "semester_1" },
+    { "id": 4, "name": "Yacine Brahimi", "specialty_id": 4, "employer_id": 4, "progress": 90, "current_semester": "semester_4" },
+    { "id": 5, "name": "Lyes Mahrez", "specialty_id": 5, "employer_id": 5, "progress": 60, "current_semester": "semester_3" }
+  ],
+  "evaluations": [
+    { "id": 1, "apprentice_id": 1, "visit_date": "2026-04-29", "semester": "semester_2", "note_tech": 9.0, "note_comp": 8.0, "note_avg": 8.5, "status": "Excellent", "observations": "Très bonne progression.", "conclusions": "Continuer sur cette lancée." },
+    { "id": 2, "apprentice_id": 2, "visit_date": "2026-04-25", "semester": "semester_1", "note_tech": 6.0, "note_comp": 6.0, "note_avg": 6.0, "status": "Moyen", "observations": "Doit être plus ponctuel.", "conclusions": "Point à surveiller." },
+    { "id": 3, "apprentice_id": 3, "visit_date": "2026-04-22", "semester": "semester_1", "note_tech": 4.0, "note_comp": 5.0, "note_avg": 4.5, "status": "En difficulté", "observations": "Difficultés techniques.", "conclusions": "Besoin de renforcement." },
+    { "id": 4, "apprentice_id": 4, "visit_date": "2026-04-18", "semester": "semester_4", "note_tech": 9.0, "note_comp": 9.0, "note_avg": 9.0, "status": "Excellent", "observations": "Excellent travail.", "conclusions": "Rien à signaler." }
+  ]
+}

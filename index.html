@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Centre de formation en informatique de rÃ©fÃ©rence. DÃ©couvrez nos formations en dÃ©veloppement web, bureautique, programmation et maintenance.">
+    <meta name="keywords"
+        content="formation informatique, dÃ©veloppement web, bureautique, programmation, maintenance informatique">
+    <title>CFPADERRAG - Excellence en Formation Informatique</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;800&family=Cairo:wght@400;600;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome pour les icÃ´nes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Header & Navigation -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="#accueil" class="logo">
+                <img src="logo-mfep-1.png" alt="Logo MFEP" class="site-logo"> CFPADERRAG
+            </a>
+            <nav class="nav-menu" id="nav-menu">
+                <ul>
+                    <li><a href="#accueil" class="nav-link active" data-i18n="nav_home">Accueil</a></li>
+                    <li><a href="#mot-directeur" class="nav-link" data-i18n="nav_director">Mot du Directeur</a></li>
+                    <li><a href="#a-propos" class="nav-link" data-i18n="nav_about">Ã€ propos</a></li>
+                    <li><a href="#formations" class="nav-link" data-i18n="nav_courses">Formations</a></li>
+                    <li><a href="#actualites" class="nav-link" data-i18n="nav_news">ActualitÃ©s</a></li>
+                    <li><a href="#contact" class="nav-link" data-i18n="nav_contact">Contact</a></li>
+                    <li><a href="#partenaires" class="nav-link" data-i18n="nav_partners">Partenaires</a></li>
+
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <select id="lang-select" class="lang-select">
+                    <option value="fr">FR</option>
+                    <option value="en">EN</option>
+                    <option value="ar">AR</option>
+                </select>
+                <button id="theme-toggle" class="theme-toggle" title="Changer de mode">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <a href="#formations" class="btn btn-primary" data-i18n="btn_enroll">S'inscrire</a>
+                <div class="mobile-toggle" id="mobile-toggle">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Section Accueil -->
+    <section id="accueil" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <h1 class="fade-in-up" data-i18n="hero_title">Propulsez votre carriÃ¨re avec nos <span
+                    class="highlight">formations en informatique</span></h1>
+            <p class="fade-in-up delay-1" data-i18n="hero_desc">Apprenez avec les meilleurs experts, maÃ®trisez les
+                technologies numÃ©riques de demain et devenez un professionnel recherchÃ©.</p>
+            <div class="hero-buttons fade-in-up delay-2">
+                <a href="#formations" class="btn btn-primary btn-lg" data-i18n="hero_btn1">DÃ©couvrir nos formations</a>
+                <a href="#a-propos" class="btn btn-outline btn-lg" data-i18n="hero_btn2">En savoir plus</a>
+            </div>
+        </div>
+        <div class="hero-shapes">
+            <!-- Decorative shapes -->
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+        </div>
+    </section>
+
+    <!-- Pourquoi nous choisir -->
+    <section class="features section-padding bg-light">
+        <div class="container">
+            <div class="section-title text-center reveal">
+                <h2 data-i18n="feat_title">Pourquoi <span class="text-primary">nous choisir ?</span></h2>
+                <p data-i18n="feat_desc">Nous vous offrons un environnement propice Ã  la rÃ©ussite et Ã  l'innovation.
+                </p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card reveal delay-1">
+                    <div class="feature-icon"><i class="fa-solid fa-chalkboard-user"></i></div>
+                    <h3 data-i18n="feat1_title">Experts QualifiÃ©s</h3>
+                    <p data-i18n="feat1_desc">Des formateurs passionnÃ©s et expÃ©rimentÃ©s issus du monde professionnel.
+                    </p>
+                </div>
+                <div class="feature-card reveal delay-2">
+                    <div class="feature-icon"><i class="fa-solid fa-certificate"></i></div>
+                    <h3 data-i18n="feat2_title">Certifications</h3>
+                    <p data-i18n="feat2_desc">Des diplÃ´mes et certifications reconnus sur le marchÃ© de l'emploi.</p>
+                </div>
+                <div class="feature-card reveal delay-3">
+                    <div class="feature-icon"><i class="fa-solid fa-laptop"></i></div>
+                    <h3 data-i18n="feat3_title">Pratique Ã  80%</h3>
+                    <p data-i18n="feat3_desc">Une pÃ©dagogie axÃ©e sur la pratique avec des projets concrets.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section Dynamique -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item reveal">
+                    <i class="fa-solid fa-user-graduate"></i>
+                    <h2 class="counter" data-target="1500">0</h2>
+                    <p data-i18n="stat_students">Ã‰tudiants FormÃ©s</p>
+                </div>
+                <div class="stat-item reveal delay-1">
+                    <i class="fa-solid fa-book-open"></i>
+                    <h2 class="counter" data-target="25">0</h2>
+                    <p data-i18n="stat_courses">Formations</p>
+                </div>
+                <div class="stat-item reveal delay-2">
+                    <i class="fa-solid fa-briefcase"></i>
+                    <h2 class="counter" data-target="95">0</h2>
+                    <p data-i18n="stat_success">Taux de RÃ©ussite %</p>
+                </div>
+                <div class="stat-item reveal delay-3">
+                    <i class="fa-solid fa-award"></i>
+                    <h2 class="counter" data-target="12">0</h2>
+                    <p data-i18n="stat_years">AnnÃ©es d'Expertise</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mot du Directeur -->
+    <section id="mot-directeur" class="director-word section-padding bg-light">
+        <div class="container about-container">
+            <div class="director-content reveal">
+                <div class="section-title">
+                    <h2 data-i18n="director_title">Le Mot du <span class="text-primary">Directeur</span></h2>
+                </div>
+                <div class="testimonial-card" style="background: var(--bg-white); box-shadow: var(--shadow-sm);">
+                    <div class="quote-icon"><i class="fa-solid fa-quote-left rtl-icon-flip"></i></div>
+                    <p data-i18n="director_word" style="font-size: 1.15rem; line-height: 1.8;">"Bienvenue au centre de formation et d'apprentissage Derrag - Wilaya de Medea. Notre engagement est de vous fournir une formation de qualité, adaptée aux exigences du marché de l'emploi actuel. Nous croyons au potentiel de chaque apprenant et nous nous efforçons de créer un environnement propice à l'épanouissement et à la réussite professionnelle."</p>
+                    <div class="client-info mt-4">
+                        <div>
+                            <h4 data-i18n="director_name" style="font-size: 1.2rem; color: var(--primary-dark);">Mr.AYAD Omar</h4>
+                            <span data-i18n="director_role" style="color: var(--primary-light); font-weight: 600;">Directeur du centre de formation et apprentissage Derrag - Medea</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="about-image reveal delay-2">
+                <img src="IMG-20260505-WA0002.jpg" alt="Le Directeur">
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Ã€ propos -->
+    <section id="a-propos" class="about section-padding">
+        <div class="container about-container">
+            <div class="about-image reveal">
+                <img src="IMG-20260505-WA0006.jpg" alt="Notre Centre de Formation">
+                <div class="experience-badge">
+                    <span class="number" data-i18n="about_exp">10+</span>
+                    <span class="text" data-i18n="about_exp_text">AnnÃ©es<br>d'expÃ©rience</span>
+                </div>
+            </div>
+            <div class="about-content reveal delay-2">
+                <div class="section-title">
+                    <h2 data-i18n="about_title">Ã€ propos de <span class="text-primary">notre Centre</span></h2>
+                </div>
+                <p data-i18n="about_desc">Notre établissement de formation professionnelle est un centre spécialisé dans
+                    le développement des compétences et la qualification des apprenants dans divers domaines répondant
+                    aux besoins du marché du travail.<br><br>Nous avons pour mission d’offrir des formations de qualité,
+                    adaptées aux évolutions technologiques et économiques, afin de favoriser l’insertion professionnelle
+                    des jeunes et l’amélioration des compétences des adultes.</p>
+
+                <div class="mission-vision">
+                    <div class="mv-block">
+                        <i class="fa-solid fa-bullseye text-primary"></i>
+                        <div>
+                            <h4 data-i18n="mission_title">Notre Mission</h4>
+                            <p data-i18n="mission_desc">DÃ©mocratiser l'accÃ¨s au savoir technologique pour tous.</p>
+                        </div>
+                    </div>
+                    <div class="mv-block">
+                        <i class="fa-solid fa-eye text-primary"></i>
+                        <div>
+                            <h4 data-i18n="vision_title">Notre Vision</h4>
+                            <p data-i18n="vision_desc">Former la prochaine gÃ©nÃ©ration de leaders du digital.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-preview">
+                    <h4 data-i18n="team_title">Une Ã©quipe pÃ©dagogique d'Ã©lite</h4>
+                    <p data-i18n="team_desc">ComposÃ©e de dÃ©veloppeurs seniors, d'ingÃ©nieurs rÃ©seaux et de
+                        spÃ©cialistes en data, notre Ã©quipe est dÃ©diÃ©e Ã  votre succÃ¨s.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Formations -->
+    <section id="formations" class="courses section-padding bg-light">
+        <div class="container">
+            <div class="section-title text-center reveal">
+                <h2 data-i18n="courses_title">Nos <span class="text-primary">Formations</span></h2>
+                <p data-i18n="courses_desc">Choisissez le parcours qui correspond à vos ambitions.</p>
+            </div>
+            <div class="courses-grid" id="courses-container">
+                <!-- Les formations seront chargées ici dynamiquement par JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Inscription Modal (Hidden by default) -->
+    <div class="modal" id="enroll-modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h3 data-i18n="modal_title">S'inscrire Ã  une formation</h3>
+            <form id="enroll-form" action="https://formsubmit.co/cfpaderrag1826@gmail.com" method="POST">
+                <input type="hidden" name="_subject" value="Nouvelle Inscription sur CFPADERRAG">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_template" value="table">
+                <div class="form-group">
+                    <label for="enroll-name" data-i18n="form_name">Nom complet</label>
+                    <input type="text" id="enroll-name" name="Nom" required>
+                </div>
+                <div class="form-group">
+                    <label for="enroll-email" data-i18n="form_email">Email</label>
+                    <input type="email" id="enroll-email" name="Email" required>
+                </div>
+                <div class="form-group">
+                    <label for="enroll-phone" data-i18n="form_phone">TÃ©lÃ©phone</label>
+                    <input type="tel" id="enroll-phone" name="Telephone" required>
+                </div>
+                <div class="form-group">
+                    <label for="enroll-course" data-i18n="form_course">Formation choisie</label>
+                    <select id="enroll-course" name="Formation">
+                        <option value="c1" data-i18n="c1_title">DÃ©veloppement Web</option>
+                        <option value="c2" data-i18n="c2_title">Programmation & Algo</option>
+                        <option value="c3" data-i18n="c3_title">Maintenance RÃ©seau</option>
+                        <option value="c4" data-i18n="c4_title">Bureautique Pro</option>
+                        <option value="c5" data-i18n="c5_title">Initiation Ã  l'Info</option>
+                        <option value="c6" data-i18n="c6_title">BTS Base de donnÃ©es</option>
+                        <option value="c7" data-i18n="c7_title">BTS RÃ©seaux & SystÃ¨mes</option>
+                        <option value="c8" data-i18n="c8_title">CAP Apiculture</option>
+                        <option value="c9" data-i18n="c9_title">Apprendre la Couture</option>
+                        <option value="c10" data-i18n="c10_title">Électricité Automobile</option>
+                        <option value="c11" data-i18n="c11_title">Soudure Professionnelle</option>
+                        <option value="c12" data-i18n="c12_title">Installation Sanitaire & Gaz</option>
+                        <option value="c13" data-i18n="c13_title">Horticulture</option>
+                        <option value="c14" data-i18n="c14_title">Taillage et greffage d'arbres fruitiers</option>
+                        <option value="c15" data-i18n="c15_title">Mise en place d'une pépinière arboricole</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block" data-i18n="form_submit">Valider
+                    l'inscription</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Info Modal -->
+    <div class="modal" id="info-modal">
+        <div class="modal-content">
+            <span class="close-btn" id="info-close-btn">&times;</span>
+            <h3 id="info-modal-title" data-i18n="info_c3_title"
+                style="color: var(--primary-dark); margin-bottom: 15px;">DÃ©tails</h3>
+            <div id="info-modal-desc" data-i18n="info_c3_desc"
+                style="color: var(--text-main); font-size: 1.05rem; line-height: 1.7;"></div>
+            <div id="info-modal-footer" style="margin-top: 25px; text-align: center;">
+                <button class="btn btn-primary btn-lg"
+                    onclick="document.getElementById('info-modal').classList.remove('show'); setTimeout(() => document.getElementById('info-modal').style.display='none', 300); document.getElementById('enroll-modal').style.display='block'; setTimeout(() => document.getElementById('enroll-modal').classList.add('show'), 10);"
+                    data-i18n="btn_enroll">S'inscrire</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TÃ©moignages & FAQ -->
+    <section class="testimonials-faq section-padding">
+        <div class="container dual-layout">
+            <div class="testimonials reveal">
+                <div class="section-title">
+                    <h2 data-i18n="testi_title">Ce que disent <span class="text-primary">nos Ã©tudiants</span></h2>
+                </div>
+                <div class="testimonial-card">
+                    <div class="quote-icon"><i class="fa-solid fa-quote-left rtl-icon-flip"></i></div>
+                    <p data-i18n="t1_desc">"GrÃ¢ce Ã  CFPADERRAG, j'ai pu me reconvertir entant que dÃ©veloppeur web en
+                        seulement 6 mois. Les profs sont top !"</p>
+                    <div class="client-info">
+                        <div class="client-avatar">
+                            <img src="https://randomuser.me/api/portraits/men/62.jpg" alt="Bilal">
+                        </div>
+                        <div>
+                            <h4>Bilal Ahmed</h4>
+                            <span data-i18n="t1_role">Alumni Dev Web</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card mt-3">
+                    <div class="quote-icon"><i class="fa-solid fa-quote-left rtl-icon-flip"></i></div>
+                    <p data-i18n="t2_desc">"La formation bureautique m'a permis d'obtenir une promotion. TrÃ¨s bien
+                        encadrÃ©e et trÃ¨s professionnelle."</p>
+                    <div class="client-info">
+                        <div class="client-avatar">
+                            <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Ahmed">
+                        </div>
+                        <div>
+                            <h4>Ahmed Boursass</h4>
+                            <span data-i18n="t2_role">Assistante de Direction</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq reveal delay-2">
+                <div class="section-title">
+                    <h2 data-i18n="faq_title">Questions <span class="text-primary">FrÃ©quentes</span></h2>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question"><span data-i18n="faq1_q">Quels sont les prÃ©requis ?</span> <i
+                            class="fa-solid fa-chevron-down"></i></button>
+                    <div class="faq-answer">
+                        <p data-i18n="faq1_a">Tout dÃ©pend de la formation. Certaines comme l'initiation ne nÃ©cessitent
+                            aucun prÃ©requis, tandis que d'autres demandent des bases en logique.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question"><span data-i18n="faq2_q">DÃ©livrez-vous des attestations ?</span> <i
+                            class="fa-solid fa-chevron-down"></i></button>
+                    <div class="faq-answer">
+                        <p data-i18n="faq2_a">Oui, Ã  la fin de chaque formation rÃ©ussie, vous obtenez un certificat
+                            attestant de vos compÃ©tences.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question"><span data-i18n="faq3_q">Comment s'inscrire ?</span> <i
+                            class="fa-solid fa-chevron-down"></i></button>
+                    <div class="faq-answer">
+                        <p data-i18n="faq3_a">Vous pouvez vous inscrire directement via notre site sur la page
+                            formation, ou nous contacter par WhatsApp ou tÃ©lÃ©phone.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Partenaires -->
+    <section id="partenaires" class="partners section-padding bg-white">
+        <div class="container">
+            <div class="section-title text-center reveal">
+                <h2 data-i18n="partners_title">Nos <span class="text-primary">Partenaires</span></h2>
+                <p data-i18n="partners_desc">Ils nous font confiance pour la qualitÃ© de nos formations.</p>
+            </div>
+            <div class="partners-grid reveal">
+                <div class="partner-item"><i class="fa-solid fa-building-columns"></i> <span data-i18n="partner1">INSFP Ksar El Boukhari</span></div>
+                <div class="partner-item"><i class="fa-solid fa-industry"></i> <span data-i18n="partner2">Entreprise de constructions métalliques - Oum Djelil</span></div>
+                <div class="partner-item"><i class="fa-solid fa-landmark"></i> <span data-i18n="partner3">L'INPE Ksar El Boukhari</span></div>
+                <div class="partner-item"><i class="fa-solid fa-graduation-cap"></i> <span data-i18n="partner4">École D</span></div>
+                <div class="partner-item"><i class="fa-solid fa-briefcase"></i> <span data-i18n="partner5">Agence E</span></div>
+                <div class="partner-item"><i class="fa-solid fa-hospital"></i> <span data-i18n="partner6">Établissement public hospitalier de Ksar El Boukhari</span></div>
+                <div class="partner-item"><i class="fa-solid fa-faucet-drip"></i> <span data-i18n="partner7">Entreprise de raccordement et d’extension des réseaux de gaz et d’eau potable - Derrag</span></div>
+                <a href="https://www.angem.dz/" target="_blank" class="partner-item" style="text-decoration: none;"><i class="fa-solid fa-handshake-angle"></i> <span data-i18n="partner8">ANGEM</span></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section ActualitÃ©s (Blog) -->
+    <section id="actualites" class="blog section-padding bg-light">
+        <div class="container">
+            <div class="section-title text-center reveal">
+                <h2 data-i18n="blog_title">Le coin <span class="text-primary">ActualitÃ©s & Conseils</span></h2>
+                <p data-i18n="blog_desc">Restez Ã  jour avec les derniÃ¨res tendances de la tech.</p>
+            </div>
+
+            <div class="blog-grid">
+                <article class="blog-card reveal">
+                    <div class="blog-img">
+                        <img src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                            alt="Conseils">
+                        <div class="blog-date">12 Avr</div>
+                    </div>
+                    <div class="blog-content">
+                        <span class="category" data-i18n="b_cat1">Conseil</span>
+                        <h3><a href="#" data-i18n="b1_title">Comment bien dÃ©buter en programmation en 2026 ?</a></h3>
+                        <p data-i18n="b1_desc">DÃ©couvrez les langages Ã  privilÃ©gier et la mÃ©thodologie pour ne pas
+                            se perdre lors de vos dÃ©buts...</p>
+                        <a href="#" class="read-more" data-i18n="read_more">Lire la suite <i
+                                class="fa-solid fa-arrow-right rtl-icon-flip"></i></a>
+                    </div>
+                </article>
+
+                <article class="blog-card reveal delay-1">
+                    <div class="blog-img">
+                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                            alt="Tech">
+                        <div class="blog-date">05 Avr</div>
+                    </div>
+                    <div class="blog-content">
+                        <span class="category" data-i18n="b_cat2">Technologie</span>
+                        <h3><a href="#" data-i18n="b2_title">L'Intelligence Artificielle va-t-elle remplacer les devs
+                                ?</a></h3>
+                        <p data-i18n="b2_desc">Analyse des nouvelles IA comme Copilot ou ChatGPT et leur impact rÃ©el
+                            sur le mÃ©tier de dÃ©veloppeur...</p>
+                        <a href="javascript:void(0)" class="read-more" data-i18n="read_more" onclick="openArticle('info_b2_title', 'info_b2_desc')">Lire la suite <i
+                                class="fa-solid fa-arrow-right rtl-icon-flip"></i></a>
+                    </div>
+                </article>
+
+                <article class="blog-card reveal delay-2">
+                    <div class="blog-img">
+                        <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                            alt="Emploi en Informatique">
+                        <div class="blog-date">28 Mar</div>
+                    </div>
+                    <div class="blog-content">
+                        <span class="category" data-i18n="b_cat3">CarriÃ¨re</span>
+                        <h3><a href="#" data-i18n="b3_title">Le Top 5 des mÃ©tiers de l'informatique qui recrutent</a>
+                        </h3>
+                        <p data-i18n="b3_desc">Vous cherchez une formation qui dÃ©bouche sur un emploi sÃ»r ? Voici les
+                            secteurs qui embauchent le plus.</p>
+                        <a href="#" class="read-more" data-i18n="read_more">Lire la suite <i
+                                class="fa-solid fa-arrow-right rtl-icon-flip"></i></a>
+                    </div>
+                </article>
+
+                <article class="blog-card reveal">
+                    <div class="blog-img">
+                        <img src="innovation_creativity_tech.png"
+                            alt="Innovation">
+                        <div class="blog-date">15 Avr</div>
+                    </div>
+                    <div class="blog-content">
+                        <span class="category" data-i18n="b_cat4">Innovation</span>
+                        <h3><a href="javascript:void(0)" data-i18n="b4_title" onclick="openArticle('info_b4_title', 'info_b4_desc')">Innovation et CrÃ©ativitÃ© dans la Tech</a></h3>
+                        <p data-i18n="b4_desc">Comment cultiver un esprit crÃ©atif pour rÃ©soudre des problÃ¨mes complexes et innover dans vos projets.</p>
+                        <a href="javascript:void(0)" class="read-more" data-i18n="read_more" onclick="openArticle('info_b4_title', 'info_b4_desc')">Lire la suite <i
+                                class="fa-solid fa-arrow-right rtl-icon-flip"></i></a>
+                    </div>
+                </article>
+
+                <article class="blog-card reveal delay-1">
+                    <div class="blog-img">
+                        <img src="https://images.unsplash.com/photo-1542744094-24638eff58bb?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                            alt="Entrepreneuriat">
+                        <div class="blog-date">14 Avr</div>
+                    </div>
+                    <div class="blog-content">
+                        <span class="category" data-i18n="b_cat5">Entrepreneuriat</span>
+                        <h3><a href="javascript:void(0)" data-i18n="b5_title" onclick="openArticle('info_b5_title', 'info_b5_desc')">Devenir Entrepreneur dans le NumÃ©rique</a></h3>
+                        <p data-i18n="b5_desc">Les Ã©tapes clÃ©s pour lancer votre propre entreprise ou projet en indÃ©pendant aprÃ¨s votre formation.</p>
+                        <a href="javascript:void(0)" class="read-more" data-i18n="read_more" onclick="openArticle('info_b5_title', 'info_b5_desc')">Lire la suite <i
+                                class="fa-solid fa-arrow-right rtl-icon-flip"></i></a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Contact -->
+    <section id="contact" class="contact section-padding">
+        <div class="container text-center mb-5 reveal">
+            <div class="section-title">
+                <h2 data-i18n="contact_title">Contactez-<span class="text-primary">nous</span></h2>
+                <p data-i18n="contact_desc">Une question ? Un projet ? Nous sommes lÃ  pour vous aider.</p>
+            </div>
+        </div>
+
+        <div class="container contact-container">
+            <div class="contact-info reveal">
+                <div class="info-item">
+                    <div class="info-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+                    <div>
+                        <h4 data-i18n="address_title">Notre Adresse</h4>
+                        <p data-i18n="address_desc">Derrag Centre, Aziz, Medea, Algerie</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon"><i class="fa-solid fa-phone"></i></div>
+                    <div>
+                        <h4 data-i18n="phone_title">TÃ©lÃ©phone</h4>
+                        <p>+213 6 58 41 57 03</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon"><i class="fa-solid fa-envelope"></i></div>
+                    <div>
+                        <h4 data-i18n="email_title">Email</h4>
+                        <p>cfpaderrag1826@gmail.com</p>
+                    </div>
+                </div>
+
+                <div class="map-container mt-4">
+                    <!-- Carte Google Maps -->
+                    <iframe
+                        src="https://maps.google.com/maps?q=Derrag%20Centre,%20Aziz,%20Medea,%20Algerie&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                        width="100%" height="250" style="border:0; border-radius: 12px;" allowfullscreen=""
+                        loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+
+            <div class="contact-form-container reveal delay-2">
+                <form id="contact-form" class="contact-form" action="https://formsubmit.co/cfpaderrag1826@gmail.com" method="POST">
+                    <input type="hidden" name="_subject" value="Nouveau Message Contact - CFPADERRAG">
+                    <input type="hidden" name="_captcha" value="false">
+                    <div class="form-row">
+                        <div class="form-group half">
+                            <label for="name" data-i18n="address_title">Nom</label>
+                            <input type="text" id="name" name="Nom" data-i18n-attr="placeholder|cform_name_ph"
+                                placeholder="Votre nom" required>
+                        </div>
+                        <div class="form-group half">
+                            <label for="email" data-i18n="email_title">Email</label>
+                            <input type="email" id="email" name="Email" data-i18n-attr="placeholder|cform_email_ph"
+                                placeholder="Votre adresse email" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject" data-i18n="cform_subject">Sujet</label>
+                        <input type="text" id="subject" name="Sujet" data-i18n-attr="placeholder|cform_subject_ph"
+                            placeholder="Sujet de votre message" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message" data-i18n="cform_msg">Message</label>
+                        <textarea id="message" name="Message" rows="5" data-i18n-attr="placeholder|cform_msg_ph"
+                            placeholder="Comment pouvons-nous vous aider ?" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg btn-block" data-i18n="cform_btn">Envoyer le
+                        message <i class="fa-solid fa-paper-plane ml-2 rtl-icon-flip"></i></button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-col">
+                <a href="#" class="logo footer-logo">
+                    <img src="logo-mfep-1.png" alt="Logo MFEP" class="site-logo"> CFPADERRAG
+                </a>
+                <p class="footer-desc" data-i18n="footer_desc">Le premier centre de formation dÃ©diÃ© aux mÃ©tiers du
+                    numÃ©rique. Notre objectif est de propulser votre carriÃ¨re dans l'univers de la tech.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4 data-i18n="footer_links">Liens Rapides</h4>
+                <ul>
+                    <li><a href="#accueil"><i class="fa-solid fa-chevron-right rtl-icon-flip"></i> <span
+                                data-i18n="nav_home">Accueil</span></a></li>
+                    <li><a href="#mot-directeur"><i class="fa-solid fa-chevron-right rtl-icon-flip"></i> <span
+                                data-i18n="nav_director">Mot du Directeur</span></a></li>
+                    <li><a href="#a-propos"><i class="fa-solid fa-chevron-right rtl-icon-flip"></i> <span
+                                data-i18n="nav_about">Ã€ propos</span></a></li>
+                    <li><a href="#formations"><i class="fa-solid fa-chevron-right rtl-icon-flip"></i> <span
+                                data-i18n="nav_courses">Formations</span></a></li>
+                    <li><a href="#actualites"><i class="fa-solid fa-chevron-right rtl-icon-flip"></i> <span
+                                data-i18n="nav_news">ActualitÃ©s</span></a></li>
+                    <li><a href="#contact"><i class="fa-solid fa-chevron-right rtl-icon-flip"></i> <span
+                                data-i18n="nav_contact">Contact</span></a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4 data-i18n="footer_courses">Nos Formations</h4>
+                <ul>
+                    <li><a href="#"><i class="fa-solid fa-chevron-right rtl-icon-flip"></i> <span
+                                data-i18n="c_link1">DÃ©veloppement Web</span></a></li>
+                    <li><a href="#"><i class="fa-solid fa-chevron-right rtl-icon-flip"></i> <span
+                                data-i18n="c_link2">IngÃ©nierie Logiciel</span></a></li>
+                    <li><a href="#"><i class="fa-solid fa-chevron-right rtl-icon-flip"></i> <span
+                                data-i18n="c_link3">Administration RÃ©seaux</span></a></li>
+                    <li><a href="#"><i class="fa-solid fa-chevron-right rtl-icon-flip"></i> <span
+                                data-i18n="c_link4">Bureautique & Office</span></a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4 data-i18n="newsletter_title">Newsletter</h4>
+                <p data-i18n="newsletter_desc">Recevez nos derniÃ¨res actualitÃ©s et offres de formations.</p>
+                <form class="newsletter-form">
+                    <input type="email" data-i18n-attr="placeholder|newsletter_ph" placeholder="Votre adresse email"
+                        required>
+                    <button type="submit" class="btn btn-primary"><i class="fa-solid fa-envelope"></i></button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p data-i18n="copyright">&copy; 2026 CFPADERRAG. Tous droits rÃ©servÃ©s. | Fait avec passion pour
+                    l'Ã©ducation.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/213658415703" class="whatsapp-float" target="_blank" title="Discutez avec nous sur WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- Scripts -->
+    <script src="translations.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

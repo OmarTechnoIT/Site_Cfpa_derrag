@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="suivi_app_title">Suivi des Apprentis - CFPA</title>
+    <meta name="description" content="Application de gestion et suivi des apprentis chez les employeurs.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="suivi.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+<body>
+    <!-- Authentication Overlay -->
+    <div id="auth-overlay" class="auth-overlay">
+        <div class="login-card">
+            <div class="login-logo">
+                <i class="fas fa-user-shield"></i>
+            </div>
+            <h2 data-i18n="login_title">Authentification</h2>
+            <p data-i18n="login_subtitle">Veuillez vous connecter pour accéder au suivi</p>
+            
+            <div id="login-error" class="login-error" data-i18n="login_error_msg">
+                Identifiants incorrects. Veuillez réessayer.
+            </div>
+
+            <form class="login-form" id="login-form">
+                <div class="auth-input-group">
+                    <label data-i18n="label_username">Nom d'utilisateur</label>
+                    <input type="text" id="username" required placeholder="admin">
+                </div>
+                <div class="auth-input-group">
+                    <label data-i18n="label_password">Mot de passe</label>
+                    <input type="password" id="password" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="btn-login" data-i18n="btn_login">Se connecter</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-box">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h2 data-i18n="suivi_app_title" style="flex: 1;">Suivi</h2>
+                <button id="theme-toggle" class="icon-btn" style="box-shadow: 0 4px 15px rgba(0,0,0,0.5); width: 35px; height: 35px; border: 1px solid rgba(255,255,255,0.2);" title="Mode Sombre / Clair">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-target="dashboard">
+                    <i class="fas fa-chart-pie"></i> <span data-i18n="nav_dashboard">Tableau de bord</span>
+                </a>
+                <a href="#" class="nav-item" data-target="apprentis">
+                    <i class="fas fa-user-graduate"></i> <span data-i18n="nav_apprentices">Apprentis</span>
+                </a>
+                <a href="#" class="nav-item" data-target="employeurs">
+                    <i class="fas fa-building"></i> <span data-i18n="nav_employers">Employeurs</span>
+                </a>
+                <a href="#" class="nav-item" data-target="visites">
+                    <i class="fas fa-calendar-check"></i> <span data-i18n="nav_visites">Visites & Évaluations</span>
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="index.html" class="back-link">
+                    <i class="fas fa-arrow-left"></i> <span data-i18n="nav_back">Retour au site</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-header">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" data-i18n-attr="placeholder|search_ph" placeholder="Rechercher un apprenti, une entreprise, une spécialité...">
+                </div>
+                <div class="header-center">
+                    <img src="logo-mfep-1.png" alt="Logo MFEP" class="mfep-logo">
+                </div>
+                <div class="header-right">
+                    <select id="lang-select" class="lang-select">
+                        <option value="fr" style="color: black;">FR</option>
+                        <option value="en" style="color: black;">EN</option>
+                        <option value="ar" style="color: black;">AR</option>
+                    </select>
+                    <button class="icon-btn notification-btn">
+                        <i class="far fa-bell"></i>
+                        <span class="badge">3</span>
+                    </button>
+                    <button class="btn-logout" id="logout-btn">
+                        <i class="fas fa-sign-out-alt"></i> <span data-i18n="btn_logout">Déconnexion</span>
+                    </button>
+                    <div class="user-profile">
+                        <img src="https://ui-avatars.com/api/?name=Admin+Directeur&background=0D8ABC&color=fff" alt="Admin" class="avatar">
+                        <div class="user-info">
+                            <span class="user-name" data-i18n="dir_admin">Direction</span>
+                            <span class="user-role" data-i18n="dir_role">Administrateur</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content-scroll">
+                <!-- Dashboard Section -->
+                <div class="content-area active-area" id="dashboard">
+                    <div class="marquee-wrapper">
+                        <span class="marquee-content" data-i18n="marquee_text">Centre de formation et d'apprentissage Derrag-medea</span>
+                    </div>
+                    <div class="header-actions">
+                        <div>
+                            <h1 data-i18n="overview">Vue d'ensemble</h1>
+                            <p class="subtitle" data-i18n="suivi_subtitle">Suivi des apprentis en formation pratique</p>
+                        </div>
+                        <div style="display: flex; gap: 1rem; align-items: center;">
+                            <button class="btn-excel" onclick="exportToExcel()">
+                                <i class="fas fa-file-excel"></i> <span data-i18n="btn_export_excel">Exporter Excel</span>
+                            </button>
+                            <button class="btn-primary" onclick="openModal('nouveau-suivi-modal')">
+                                <i class="fas fa-plus"></i> <span data-i18n="btn_new_visit">Nouvelle Visite</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card glass-panel blue-card">
+                            <div class="stat-icon blue-icon"><i class="fas fa-users"></i></div>
+                            <div class="stat-details">
+                                <p class="stat-label" data-i18n="stat_total_app">Total Apprentis</p>
+                                <h3 class="stat-number">124</h3>
+                                <p class="stat-trend positive"><i class="fas fa-arrow-up"></i> +12%</p>
+                            </div>
+                        </div>
+                        <div class="stat-card glass-panel green-card">
+                            <div class="stat-icon green-icon"><i class="fas fa-building"></i></div>
+                            <div class="stat-details">
+                                <p class="stat-label" data-i18n="stat_active_comp">Entreprises Actives</p>
+                                <h3 class="stat-number">45</h3>
+                                <p class="stat-trend positive"><i class="fas fa-arrow-up"></i> +3%</p>
+                            </div>
+                        </div>
+                        <div class="stat-card glass-panel purple-card">
+                            <div class="stat-icon purple-icon"><i class="fas fa-clipboard-check"></i></div>
+                            <div class="stat-details">
+                                <p class="stat-label" data-i18n="stat_visits_done">Visites Effectuées</p>
+                                <h3 class="stat-number">28</h3>
+                                <p class="stat-trend neutral">OK</p>
+                            </div>
+                        </div>
+                        <div class="stat-card glass-panel red-card">
+                            <div class="stat-icon red-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                            <div class="stat-details">
+                                <p class="stat-label" data-i18n="stat_app_difficulty">Apprentis en Difficulté</p>
+                                <h3 class="stat-number">7</h3>
+                                <p class="stat-trend negative"><i class="fas fa-arrow-up"></i> +2</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-content">
+                        <div class="table-container glass-panel">
+                            <div class="table-header">
+                                <h2 data-i18n="recent_evals">Dernières Évaluations</h2>
+                                <button class="btn-text" data-i18n="view_all">Voir tout</button>
+                            </div>
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th data-i18n="col_app">Apprenti</th>
+                                        <th data-i18n="col_comp">Entreprise</th>
+                                        <th data-i18n="col_date">Date de visite</th>
+                                        <th data-i18n="col_note">Note Globale</th>
+                                        <th data-i18n="col_status">Statut</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="recent-evaluations">
+                                    <!-- Populated by JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Apprentis Section -->
+                <div class="content-area" id="apprentis">
+                    <div class="header-actions">
+                        <div>
+                            <h1 data-i18n="list_apprentices">Liste des Apprentis</h1>
+                            <p class="subtitle" data-i18n="manage_profiles">Gestion des profils et affectations</p>
+                        </div>
+                        <div style="display: flex; gap: 1rem; align-items: center;">
+                            <button class="btn-excel" onclick="exportToExcel()">
+                                <i class="fas fa-file-excel"></i> <span data-i18n="btn_export_excel">Exporter Excel</span>
+                            </button>
+                            <button class="btn-primary" onclick="openModal('nouvel-apprenti-modal')">
+                                <i class="fas fa-plus"></i> <span data-i18n="btn_add_app">Ajouter un Apprenti</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="table-container glass-panel">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th data-i18n="col_name">Nom & Prénom</th>
+                                    <th data-i18n="col_spec">Spécialité</th>
+                                    <th data-i18n="col_semester">Semestre</th>
+                                    <th data-i18n="col_current_emp">Employeur Actuel</th>
+                                    <th data-i18n="col_progress">Progression</th>
+                                    <th data-i18n="col_actions">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="apprentices-list">
+                                <!-- Populated by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Employeurs Section -->
+                <div class="content-area" id="employeurs">
+                    <div class="header-actions">
+                        <div>
+                            <h1 data-i18n="list_employers">Liste des Employeurs</h1>
+                            <p class="subtitle" data-i18n="manage_partners">Gestion des entreprises partenaires</p>
+                        </div>
+                        <div style="display: flex; gap: 1rem; align-items: center;">
+                            <button class="btn-excel" onclick="exportToExcel()">
+                                <i class="fas fa-file-excel"></i> <span data-i18n="btn_export_excel">Exporter Excel</span>
+                            </button>
+                            <button class="btn-primary" onclick="openModal('nouvel-employeur-modal')">
+                                <i class="fas fa-plus"></i> <span data-i18n="btn_add_employer">Ajouter un Employeur</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="table-container glass-panel">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th data-i18n="col_comp">Entreprise</th>
+                                    <th data-i18n="col_sector">Secteur</th>
+                                    <th data-i18n="col_contact">Contact</th>
+                                    <th data-i18n="nav_apprentices">Apprentis</th>
+                                    <th data-i18n="col_actions">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="employers-list">
+                                <!-- Populated by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Visites & Évaluations Section -->
+                <div class="content-area" id="visites">
+                    <div class="header-actions">
+                        <div>
+                            <h1 data-i18n="nav_visites">Visites & Évaluations</h1>
+                            <p class="subtitle" data-i18n="history_evals">Historique complet des suivis en entreprise</p>
+                        </div>
+                        <div style="display: flex; gap: 1rem; align-items: center;">
+                            <button class="btn-excel" onclick="exportToExcel()">
+                                <i class="fas fa-file-excel"></i> <span data-i18n="btn_export_excel">Exporter Excel</span>
+                            </button>
+                            <button class="btn-primary" onclick="openModal('nouveau-suivi-modal')">
+                                <i class="fas fa-plus"></i> <span data-i18n="btn_new_visit">Nouvelle Visite</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="stats-grid">
+                        <div class="stat-card glass-panel" style="animation-delay: 0.1s;">
+                            <div class="stat-icon blue-icon"><i class="fas fa-calendar-alt"></i></div>
+                            <div class="stat-details">
+                                <p class="stat-label" data-i18n="stat_visits_done">Visites Totales</p>
+                                <h3 class="stat-number" id="total-visits-count">0</h3>
+                                <p class="stat-trend neutral">Semestre</p>
+                            </div>
+                        </div>
+                        <div class="stat-card glass-panel" style="animation-delay: 0.2s;">
+                            <div class="stat-icon green-icon"><i class="fas fa-check-circle"></i></div>
+                            <div class="stat-details">
+                                <p class="stat-label" data-i18n="col_avg">Moyenne Générale</p>
+                                <h3 class="stat-number" id="average-score">0/10</h3>
+                                <p class="stat-trend positive">Performance</p>
+                            </div>
+                        </div>
+                        <div class="stat-card glass-panel" style="animation-delay: 0.3s;">
+                            <div class="stat-icon purple-icon"><i class="fas fa-user-check"></i></div>
+                            <div class="stat-details">
+                                <p class="stat-label" data-i18n="stat_total_app">Apprentis Évalués</p>
+                                <h3 class="stat-number" id="evaluated-apprentices-count">0</h3>
+                                <p class="stat-trend neutral">Individus</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="table-container glass-panel">
+                        <div class="table-header">
+                            <h2 data-i18n="history_evals">Historique des Évaluations</h2>
+                            <div class="search-bar" style="width: 250px; background: rgba(0,0,0,0.05); border: 1px solid #ddd;">
+                                <i class="fas fa-filter" style="color: #666;"></i>
+                                <input type="text" data-i18n-attr="placeholder|filter_ph" placeholder="Filtrer..." id="filter-visits" style="color: #333;">
+                            </div>
+                        </div>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th data-i18n="col_date">Date</th>
+                                    <th data-i18n="col_app">Apprenti</th>
+                                    <th data-i18n="col_semester">Semestre</th>
+                                    <th data-i18n="col_comp">Entreprise</th>
+                                    <th data-i18n="col_note_tech">Note Technique</th>
+                                    <th data-i18n="col_note_comp">Comportement</th>
+                                    <th data-i18n="col_avg">Moyenne</th>
+                                    <th data-i18n="col_actions">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="all-visits-list">
+                                <!-- Populated by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modals -->
+    <!-- Modal Détails Évaluation -->
+    <div class="modal-overlay" id="modal-overlay-details">
+        <div class="modal glass-panel modal-visite" id="details-evaluation-modal" style="max-width: 500px;">
+            <div class="modal-header">
+                <h2 data-i18n="modal_details">Détails de l'Évaluation</h2>
+                <button class="close-modal" onclick="closeModal()"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div id="details-content">
+                    <div style="margin-bottom: 1.5rem;">
+                        <h4 style="color: var(--primary-color); margin-bottom: 0.5rem;"><i class="fas fa-comment-alt"></i> <span data-i18n="label_tutor_obs">Observations du tuteur</span></h4>
+                        <p id="detail-obs" style="background: #f9fafb; padding: 1rem; border-radius: 8px; border-left: 4px solid var(--primary-color); font-style: italic; color: #000;"></p>
+                    </div>
+                    <div>
+                        <h4 style="color: var(--secondary-color); margin-bottom: 0.5rem;"><i class="fas fa-tasks"></i> <span data-i18n="label_conclusions">Conclusions et plan d'action</span></h4>
+                        <p id="detail-concl" style="background: #f9fafb; padding: 1rem; border-radius: 8px; border-left: 4px solid var(--secondary-color); color: #000;"></p>
+                    </div>
+                    <div style="margin-top: 1.5rem;">
+                        <h4 style="color: #10b981; margin-bottom: 0.5rem;"><i class="fas fa-map-marker-alt"></i> <span data-i18n="label_gps_verif">Vérification GPS</span></h4>
+                        <p id="detail-gps" style="background: #f9fafb; padding: 1rem; border-radius: 8px; border-left: 4px solid #10b981; color: #000;">
+                            Aucune coordonnée enregistrée.
+                        </p>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn-primary" onclick="closeModal()" data-i18n="nav_back">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-overlay" id="modal-overlay-visite">
+        <div class="modal glass-panel modal-visite" id="nouveau-suivi-modal">
+            <div class="modal-header">
+                <h2 data-i18n="modal_new_visit">Enregistrer une nouvelle visite</h2>
+                <button class="close-modal" onclick="closeModal()"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <form id="suivi-form" onsubmit="submitForm(event, 'Visite enregistrée avec succès !')">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label data-i18n="label_evaluated_app">Apprenti évalué</label>
+                            <select required id="select-apprenti-visite">
+                                <option value="" disabled selected data-i18n="label_evaluated_app">Sélectionner un apprenti...</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label data-i18n="label_visit_date">Date de la visite</label>
+                            <input type="date" required id="visit-date">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label data-i18n="label_eval_tech">Évaluation Technique (/10)</label>
+                            <input type="number" min="0" max="10" required placeholder="Ex: 8">
+                        </div>
+                        <div class="form-group">
+                            <label data-i18n="label_eval_comp">Comportement (/10)</label>
+                            <input type="number" min="0" max="10" required placeholder="Ex: 9">
+                        </div>
+                        <div class="form-group">
+                            <label data-i18n="label_semester">Semestre</label>
+                            <select required>
+                                <option value="" disabled selected data-i18n="label_semester">Semestre...</option>
+                                <option value="sem1" data-i18n="sem1">Semestre 1</option>
+                                <option value="sem2" data-i18n="sem2">Semestre 2</option>
+                                <option value="sem3" data-i18n="sem3">Semestre 3</option>
+                                <option value="sem4" data-i18n="sem4">Semestre 4</option>
+                                <option value="sem5" data-i18n="sem5">Semestre 5</option>
+                                <option value="sem6" data-i18n="sem6">Semestre 6</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label data-i18n="label_tutor_obs">Observations du tuteur (Employeur)</label>
+                        <textarea rows="3" placeholder="..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label data-i18n="label_conclusions">Conclusions et plan d'action</label>
+                        <textarea rows="3" placeholder="..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label data-i18n="label_gps">Coordonnées GPS de la visite</label>
+                        <div style="display: flex; gap: 10px; align-items: center;">
+                            <input type="text" id="visit-gps" readonly placeholder="Non capturées" style="flex: 1; background: #f3f4f6; cursor: not-allowed; color: #000;">
+                            <button type="button" class="btn-primary" onclick="captureGPS()" style="white-space: nowrap; padding: 0.5rem 1rem;">
+                                <i class="fas fa-map-marker-alt"></i> Capturer
+                            </button>
+                        </div>
+                        <small style="color: var(--text-muted); font-size: 0.8rem;" data-i18n="gps_hint">Permet de vérifier la présence chez l'employeur.</small>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn-primary" onclick="closeModal()" data-i18n="btn_cancel">Annuler</button>
+                        <button type="submit" class="btn-primary" data-i18n="btn_save_eval">Enregistrer l'évaluation</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Ajouter un Apprenti -->
+    <div class="modal-overlay" id="modal-overlay-apprenti">
+        <div class="modal glass-panel modal-apprenti" id="nouvel-apprenti-modal">
+            <div class="modal-header">
+                <h2 data-i18n="modal_add_app">Ajouter un nouvel apprenti</h2>
+                <button class="close-modal" onclick="closeModal()"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <form id="apprenti-form" onsubmit="submitForm(event, 'Apprenti ajouté avec succès !')">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label data-i18n="col_name">Nom & Prénom</label>
+                            <input type="text" required placeholder="Ex: Ali Benali">
+                        </div>
+                        <div class="form-group">
+                            <label data-i18n="label_birthdate">Date de naissance</label>
+                            <input type="date" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label data-i18n="label_spec">Spécialité</label>
+                        <select required>
+                            <option value="" disabled selected data-i18n="label_spec">Sélectionner une spécialité...</option>
+                            <option>Développement Web</option>
+                            <option>Plomberie</option>
+                            <option>Électricité Auto</option>
+                            <option>Horticulture</option>
+                            <option>Menuiserie</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label data-i18n="label_semester">Semestre</label>
+                        <select required>
+                            <option value="" disabled selected data-i18n="label_semester">Sélectionner le semestre...</option>
+                            <option value="sem1" data-i18n="sem1">Semestre 1</option>
+                            <option value="sem2" data-i18n="sem2">Semestre 2</option>
+                            <option value="sem3" data-i18n="sem3">Semestre 3</option>
+                            <option value="sem4" data-i18n="sem4">Semestre 4</option>
+                            <option value="sem5" data-i18n="sem5">Semestre 5</option>
+                            <option value="sem6" data-i18n="sem6">Semestre 6</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label data-i18n="label_employer">Employeur (Entreprise)</label>
+                        <select required id="select-employeur-apprenti">
+                            <option value="" disabled selected data-i18n="label_employer">Sélectionner un employeur...</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label data-i18n="label_tutor_contact">Contact Tuteur</label>
+                        <input type="text" placeholder="...">
+                    </div>
+                    
+                    <div class="modal-actions">
+                        <button type="button" class="btn-primary" onclick="closeModal()" data-i18n="btn_cancel">Annuler</button>
+                        <button type="submit" class="btn-primary" data-i18n="btn_add_app">Ajouter l'apprenti</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Ajouter un Employeur -->
+    <div class="modal-overlay" id="modal-overlay-employeur">
+        <div class="modal glass-panel modal-employeur" id="nouvel-employeur-modal">
+            <div class="modal-header">
+                <h2 data-i18n="modal_add_employer">Ajouter un nouvel employeur</h2>
+                <button class="close-modal" onclick="closeModal()"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <form id="employeur-form" onsubmit="submitForm(event, 'Employeur ajouté avec succès !')">
+                    <div class="form-group">
+                        <label data-i18n="label_comp_name">Nom de l'entreprise</label>
+                        <input type="text" required placeholder="Ex: TechSolutions DZ">
+                    </div>
+                    <div class="form-group">
+                        <label data-i18n="label_sector">Secteur d'activité</label>
+                        <input type="text" required placeholder="Ex: Informatique, Bâtiment...">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label data-i18n="label_responsible">Responsable / Tuteur</label>
+                            <input type="text" required placeholder="...">
+                        </div>
+                        <div class="form-group">
+                            <label data-i18n="label_phone">Téléphone</label>
+                            <input type="tel" required placeholder="...">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label data-i18n="label_address">Adresse</label>
+                        <textarea rows="2" placeholder="..."></textarea>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn-primary" onclick="closeModal()" data-i18n="btn_cancel">Annuler</button>
+                        <button type="submit" class="btn-primary" data-i18n="btn_add_employer">Ajouter l'entreprise</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Action Button -->
+    <div class="fab-container">
+        <button class="fab-button" onclick="openModal('nouveau-suivi-modal')" title="Nouvelle Visite">
+            <i class="fas fa-plus"></i>
+        </button>
+    </div>
+
+    <script src="translations.js"></script>
+    <script src="suivi.js"></script>
+</body>
+</html>
